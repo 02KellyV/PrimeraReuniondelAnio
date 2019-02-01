@@ -1,0 +1,51 @@
+body{
+	margin: 0;
+}
+
+.header{
+	box-shadow: 0    /*h-offset (horizontal)*/
+			    1px  /*v-offset (vertical)*/
+				12px /*blur     (difuminado)*/
+				-2px /*spread   (difusión)*/
+				#dedede;/*color*/
+			    
+	height: 80px; /*Ancho header*/
+}
+
+section{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.article{
+	width: 600px;
+	height: 600px;
+	padding: 10px;
+}
+
+.background{
+	background-color: #e8f3ec;
+
+}
+
+#juego {
+	opacity: 0.3;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+
+td > img {
+	width: 123px;
+	height: 148px;
+	border-radius: 8px;
+}
+
+input {
+	width: 90px;
+	height: 30px;
+}
+
