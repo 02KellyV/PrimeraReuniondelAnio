@@ -12,6 +12,10 @@ body{
 	height: 80px; /*Ancho header*/
 }
 
+.header img {
+	height: 80px;
+}
+
 section{
 	display: flex;
 	flex-wrap: wrap;
