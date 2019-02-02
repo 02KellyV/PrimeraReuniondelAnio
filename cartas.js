@@ -20,12 +20,17 @@ var jugada1 = "";
 var jugada2 = "";
 var identificadorJ1 = "";
 var identificadorJ2 = "";
-
+var time = 0;
+var interval;
 
 /*
 Para inciar el juego
  */
 function iniciarJuego () {
+  interval = setInterval(function(){
+    timer = document.getElementById('time');
+    timer.innerText = ++time;
+  },1000);
   //Nos traemos el elemento que vendría siendo el div con el id juego
   var dato = document.getElementById("juego");
   dato.style.opacity = 1;
@@ -43,6 +48,9 @@ function iniciarJuego () {
 
 //Reinicia el juego
 function resetearJuego () {
+  time = 0;
+  timer = document.getElementById('time');
+  timer.innerText = time;
   cartas.sort(function() {return Math.random() - 0.5});
   //Vuelve a asignar de manera aleatoria las cartas
   for ( var i = 0 ; i < 16 ; i++ ) {
@@ -128,6 +136,7 @@ function comprobar () {
 
   //Muestra el mensaje de victoria
   if(aciertos === 16){
+    clearInterval(interval);
     alert("Ganaste");
   }
 }
