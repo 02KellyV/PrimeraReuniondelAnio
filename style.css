@@ -10,10 +10,22 @@ body{
 				#dedede;/*color*/
 			    
 	height: 80px; /*Ancho header*/
+	display: flex;
+	align-items: center;
 }
 
 .header img {
-	height: 80px;
+	height: 70px;
+	margin-left: 50px;
+}
+
+footer img {
+	width: 490px;
+	height: 164px;
+}
+footer{
+	display: flex;
+	justify-content: center;
 }
 
 section{
@@ -24,7 +36,6 @@ section{
 
 .article{
 	width: 600px;
-	height: 600px;
 	padding: 10px;
 }
 
@@ -52,4 +63,5 @@ input {
 	width: 90px;
 	height: 30px;
 }
+
 
