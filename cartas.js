@@ -20,17 +20,12 @@ var jugada1 = "";
 var jugada2 = "";
 var identificadorJ1 = "";
 var identificadorJ2 = "";
-var time = 0;
-var interval;
+var intentos = 0;
 
 /*
 Para inciar el juego
  */
 function iniciarJuego () {
-  interval = setInterval(function(){
-    timer = document.getElementById('time');
-    timer.innerText = ++time;
-  },1000);
   //Nos traemos el elemento que vendría siendo el div con el id juego
   var dato = document.getElementById("juego");
   dato.style.opacity = 1;
@@ -48,9 +43,7 @@ function iniciarJuego () {
 
 //Reinicia el juego
 function resetearJuego () {
-  time = 0;
-  timer = document.getElementById('time');
-  timer.innerText = time;
+  document.getElementById('intentos').innerText = 0;
   cartas.sort(function() {return Math.random() - 0.5});
   //Vuelve a asignar de manera aleatoria las cartas
   for ( var i = 0 ; i < 16 ; i++ ) {
@@ -58,7 +51,7 @@ function resetearJuego () {
     var dato = document.getElementById( i.toString() );
     dato.dataset.valor = carta;
     //Voltea las cartas
-    colorCambio( i, 'black', "CardsPioneers/Pioneras-00.jpg");
+    cartaCambio( i,  "CardsPioneers/Pioneras-00.jpg");
   }	
 }
 
@@ -76,6 +69,8 @@ function girarCarta () {
   identificadorJ2 = evento.target.id;
 
   if ( jugada1 !== "" ) {
+
+    document.getElementById('intentos').innerText = ++intentos;
 
     //Verificamos si ya hay 2 cartas seleccionadas y si son iguales
     if ( jugada1 === jugada2 && identificadorJ1 !== identificadorJ2
@@ -98,7 +93,7 @@ function girarCarta () {
         cartaCambio(this.identificadorJ1, "CardsPioneers/Pioneras-00.jpg")
         cartaCambio(this.identificadorJ2, "CardsPioneers/Pioneras-00.jpg")
         vaciar()
-      },1000);
+      },200);
     }
     //Verificamos que aún no se hayan tomados las dos cartas aún y le asignamos la carta a la primera jugada
   } else if(jugada2 !== "valor") {
@@ -136,7 +131,6 @@ function comprobar () {
 
   //Muestra el mensaje de victoria
   if(aciertos === 16){
-    clearInterval(interval);
     alert("Ganaste");
   }
 }
