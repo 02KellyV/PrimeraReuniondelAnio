@@ -77,7 +77,6 @@ function girarCarta () {
     comprobarSiHaGanadoElJuego();
 
   }
-
 }
 
 function validarSiLasCartasSonDiferentes () {
