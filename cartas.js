@@ -44,7 +44,6 @@ function iniciarJuego () {
 //Reinicia el juego
 function resetearJuego () {
   intentos = 0;
-  document.getElementById('intentos').innerText = 0;
   cartas = cartas.sort(function() {return Math.random() - 0.5});
   //Vuelve a asignar de manera aleatoria las cartas
   for ( var i = 0 ; i < 16 ; i++ ) {
@@ -72,7 +71,7 @@ function girarCarta () {
 
   if ( jugada1 !== "" ) {
 
-    document.getElementById('intentos').innerText = ++intentos;
+    ++intentos;
 
     //Verificamos si ya hay 2 cartas seleccionadas y si son iguales
     if ( jugada1 === jugada2 && identificadorJ1 !== identificadorJ2
@@ -133,6 +132,7 @@ function comprobar () {
 
   //Muestra el mensaje de victoria
   if(aciertos === 16){
-    alert("Ganaste");
+    alert("Ganaste con: "+intentos+" intentos!");
+    resetearJuego();    
   }
 }
