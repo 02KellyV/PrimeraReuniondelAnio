@@ -24,6 +24,7 @@ var valorDeLaJugada2 = "";
 var idDeLaJugada1 = "";
 var idDeLaJugada2 = "";
 
+var intentos = 0;
 
 /*
 Para inciar el juego
@@ -46,23 +47,27 @@ function iniciarJuego () {
 
 //Reinicia el juego
 function resetearJuego () {
+  intentos =0;
   cartas.sort(function() {return Math.random() - 0.5});
   //Vuelve a asignar de manera aleatoria las cartas
   for ( var i = 0 ; i < 16; i++ ) {
     var carta = cartas[i].nombre;
+    cartas[i].seleccion = false;
     var dato = document.getElementById( i.toString() );
     dato.dataset.valor = carta;
     //Voltea las cartas
-    colorCambio( i, 'black', "CardsPioneers/Pioneras-00.jpg");
+    reemplazarImagenDeLaCarta(i, "CardsPioneers/Pioneras-00.jpg");
   }	
 }
 
 function girarCarta () {
-
-  var evento = window.event;
+ // Hacer clic y pulsar teclas son eventos.
+    var evento = window.event;
 
   if ( valorDeLaJugada1 === "" ) {
+    ++intentos;
 
+    //Extraemos el valor de la carta
     valorDeLaJugada1 = evento.target.dataset.valor;
     idDeLaJugada1 = evento.target.id;
     reemplazarImagenDeLaCarta(idDeLaJugada1, cartas[parseInt(idDeLaJugada1)].card);
@@ -80,8 +85,10 @@ function girarCarta () {
 }
 
 function validarSiLasCartasSonDiferentes () {
-  if ( valorDeLaJugada1 !== valorDeLaJugada2 ) {
+    //Verificamos si ya hay 2 cartas seleccionadas y si son iguales
+    if ( valorDeLaJugada1 !== valorDeLaJugada2 ) {
     setTimeout(() => {
+
       reemplazarImagenDeLaCarta(idDeLaJugada1, "CardsPioneers/Pioneras-00.jpg")
       reemplazarImagenDeLaCarta(idDeLaJugada2, "CardsPioneers/Pioneras-00.jpg")
       vaciar();
@@ -127,6 +134,6 @@ function comprobarSiHaGanadoElJuego () {
 
   //Muestra el mensaje de victoria
   if(aciertos === 16){
-    alert("¡Que bien! Te ganaste un pan ;)");
+    alert("Tuviste "+intentos+"intentos. ¡Que bien! Te ganaste un pan ;)");
   }
 }
