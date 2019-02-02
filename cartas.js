@@ -31,7 +31,7 @@ function iniciarJuego () {
   dato.style.opacity = 1;
 
   //Ordenamos las cartas de manera aleatoria
-  cartas.sort(function() {return Math.random() - 0.5});
+  cartas = cartas.sort(function() {return Math.random() - 0.5});
 
   //Este for se encarga de asignarles las imaganes aleatorias para comensar con el juego
   for ( var i = 0 ; i < 16 ; i++ ) {
@@ -43,11 +43,13 @@ function iniciarJuego () {
 
 //Reinicia el juego
 function resetearJuego () {
+  intentos = 0;
   document.getElementById('intentos').innerText = 0;
-  cartas.sort(function() {return Math.random() - 0.5});
+  cartas = cartas.sort(function() {return Math.random() - 0.5});
   //Vuelve a asignar de manera aleatoria las cartas
   for ( var i = 0 ; i < 16 ; i++ ) {
     var carta = cartas[i].nombre;
+    cartas[i].seleccion = false;
     var dato = document.getElementById( i.toString() );
     dato.dataset.valor = carta;
     //Voltea las cartas
